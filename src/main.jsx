@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import { LanguageProvider } from './LanguageContext.jsx'
 import App from './App.jsx'
-import AboutSection from './About.jsx'
 import Dasturlar from './Dasturlar.jsx'
 import Apply from './Apply.jsx'
 import Sport from './Sport.jsx'
@@ -21,7 +20,6 @@ function HomePage() {
   return (
     <>
       <App />
-      <AboutSection />
       <Dasturlar />
       <Sport />
       <AqlVaIjod />
