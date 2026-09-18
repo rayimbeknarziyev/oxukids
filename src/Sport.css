@@ -1,0 +1,370 @@
+:root {
+  --navy: #1a3fa0;
+  --navy-dark: #12296e;
+  --gold: #f0b429;
+  --gold-dark: #d99a12;
+  --cream: #fdf6e3;
+  --sky: #eaf1ff;
+  --text-dark: #1f2937;
+  --text-muted: #5b6472;
+}
+
+.sport-section {
+  position: relative;
+  background: linear-gradient(180deg, var(--sky) 0%, #f4f8ff 100%);
+  padding: 120px 48px 110px;
+  overflow: hidden;
+}
+
+.sport-section::before,
+.sport-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: sport-float 10s ease-in-out infinite;
+}
+
+.sport-section::before {
+  width: 360px;
+  height: 360px;
+  top: -140px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(91, 155, 216, 0.22), transparent 70%);
+}
+
+.sport-section::after {
+  width: 300px;
+  height: 300px;
+  bottom: -120px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(240, 180, 41, 0.2), transparent 70%);
+  animation-delay: -5s;
+}
+
+@keyframes sport-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, 22px) scale(1.06); }
+}
+
+.sport-div {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.sport__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sport-section.in-view .sport__eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sport__eyebrow-line {
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.sport__heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1.25;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.08s, transform 0.7s ease 0.08s;
+}
+
+.sport-section.in-view .sport__heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sport__heading-main {
+  color: var(--navy);
+}
+
+.sport__heading-gold {
+  color: var(--gold-dark);
+  margin-left: 12px;
+}
+
+.sport-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.sport-left {
+  position: relative;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.sport-section.in-view .sport-left {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pool-img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 32px;
+  border: 8px solid #fff;
+  box-shadow: 0 30px 60px rgba(18, 41, 110, 0.2);
+  display: block;
+  transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pool-img--out {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.pool-img--in {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
+.pool-img:not(.pool-img--out):not(.pool-img--in) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sport-thumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.sport-thumb {
+  width: 76px;
+  height: 58px;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 0;
+  border: 3px solid transparent;
+  background: none;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.sport-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sport-thumb:hover {
+  opacity: 0.9;
+  transform: translateY(-3px);
+}
+
+.sport-thumb--active {
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(18, 41, 110, 0.22);
+}
+
+.sport-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sport__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  padding: 20px 24px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(24px);
+  box-shadow: 0 14px 32px rgba(18, 41, 110, 0.08);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+}
+
+.sport-section.in-view .sport__option {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sport__option:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(18, 41, 110, 0.14);
+}
+
+.sport__option--active {
+  box-shadow: 0 22px 44px rgba(18, 41, 110, 0.16);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.sport__option-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sport__option:hover .sport__option-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.sport__option--active .sport__option-icon {
+  animation: icon-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes icon-pop {
+  0% { transform: scale(0.8) rotate(-8deg); }
+  60% { transform: scale(1.12) rotate(4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.sport__option-icon svg {
+  transition: transform 0.4s ease;
+}
+
+.sport__option-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.sport__option-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.sport__option-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+
+.sport__option-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.sport__option-desc {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.sport__option::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14%;
+  bottom: 14%;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--gold);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sport__option--active::before {
+  opacity: 1;
+  transform: scaleY(1);
+  background: currentColor;
+}
+
+.sport__option--active {
+  color: inherit;
+}
+
+.sport__option--active::before {
+  background: var(--gold);
+}
+
+@media (max-width: 1000px) {
+  .sport-container {
+    grid-template-columns: 1fr;
+  }
+
+  .pool-img {
+    height: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sport-section {
+    padding: 90px 24px 80px;
+  }
+
+  .sport__heading {
+    font-size: 2rem;
+  }
+
+  .sport__heading-gold {
+    display: block;
+    margin-left: 0;
+  }
+
+  .pool-img {
+    height: 320px;
+  }
+
+  .sport__option {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .sport__option-icon {
+    width: 52px;
+    height: 52px;
+  }
+}

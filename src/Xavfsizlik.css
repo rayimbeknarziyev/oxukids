@@ -1,0 +1,363 @@
+:root {
+  --navy: #1a3fa0;
+  --navy-dark: #12296e;
+  --gold: #f0b429;
+  --gold-dark: #d99a12;
+  --cream: #fdf6e3;
+  --sky: #eaf1ff;
+  --text-dark: #1f2937;
+  --text-muted: #5b6472;
+}
+
+.saf-root {
+  position: relative;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--cream) 100%);
+  padding: 120px 48px 110px;
+  overflow: hidden;
+}
+
+.saf-root::before,
+.saf-root::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: saf-float 11s ease-in-out infinite;
+}
+
+.saf-root::before {
+  width: 320px;
+  height: 320px;
+  top: -110px;
+  right: -90px;
+  background: radial-gradient(circle, rgba(196, 159, 91, 0.22), transparent 70%);
+}
+
+.saf-root::after {
+  width: 300px;
+  height: 300px;
+  bottom: -110px;
+  left: -90px;
+  background: radial-gradient(circle, rgba(143, 184, 150, 0.2), transparent 70%);
+  animation-delay: -5s;
+}
+
+@keyframes saf-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -16px) scale(1.06); }
+}
+
+.saf-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.saf-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.saf-header.saf-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.saf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.saf-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.saf-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.25;
+  color: var(--navy);
+  margin: 0;
+}
+
+.saf-title .gold {
+  color: var(--gold-dark);
+  margin-left: 10px;
+}
+
+.saf-lead {
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 380px;
+  margin: 0;
+}
+
+.saf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.saf-card {
+  position: relative;
+  background: #fff;
+  border-radius: 26px;
+  padding: 34px 28px;
+  border: 1px solid rgba(26, 63, 160, 0.06);
+  box-shadow: 0 18px 40px rgba(18, 41, 110, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
+.saf-card.saf-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.saf-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent), transparent 70%);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.saf-card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.saf-card:hover {
+  border-color: color-mix(in srgb, var(--accent, var(--gold)) 45%, transparent);
+  box-shadow: 0 28px 54px color-mix(in srgb, var(--accent, var(--gold)) 25%, transparent);
+  transform: translateY(-8px);
+}
+
+.saf-card-icon {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent, var(--gold)), color-mix(in srgb, var(--accent, var(--gold)) 65%, black));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--accent, var(--gold)) 40%, transparent);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.saf-card-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.saf-card:hover .saf-card-icon {
+  transform: scale(1.1) rotate(-6deg);
+}
+
+.saf-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin: 0 0 10px;
+}
+
+.saf-card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent, var(--gold));
+  background: color-mix(in srgb, var(--accent, var(--gold)) 14%, white);
+  border-radius: 999px;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+}
+
+.saf-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.saf-banner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: linear-gradient(135deg, var(--navy-dark), #0c1f57);
+  border-radius: 28px;
+  padding: 36px 40px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms);
+}
+
+.saf-banner.saf-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.saf-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 90% 10%, rgba(240, 180, 41, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.saf-banner-left {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.saf-banner-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: saf-shield-pulse 2.8s ease-in-out infinite;
+}
+
+.saf-banner-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes saf-shield-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(240, 180, 41, 0)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 14px rgba(240, 180, 41, 0.55)); }
+}
+
+.saf-banner-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.saf-banner-desc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 460px;
+}
+
+.saf-banner-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy-dark);
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: none;
+  padding: 15px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 16px 32px rgba(240, 180, 41, 0.32);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.saf-banner-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 42px rgba(240, 180, 41, 0.42);
+}
+
+.saf-banner-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.saf-banner-btn:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1000px) {
+  .saf-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .saf-root {
+    padding: 90px 24px 80px;
+  }
+
+  .saf-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .saf-title {
+    font-size: 2rem;
+  }
+
+  .saf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saf-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 26px;
+  }
+
+  .saf-banner-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
